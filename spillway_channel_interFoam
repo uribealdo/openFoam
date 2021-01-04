@@ -1,0 +1,67 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  3.0.x                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     interFoam;
+
+startFrom       startTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         50;
+
+deltaT          0.01;
+
+writeControl    timeStep; //adjustableRunTime;
+
+writeInterval   50;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  7;
+
+writeCompression compressed;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable no; //yes;
+
+adjustTimeStep  no; //yes;
+
+maxCo           1;
+maxAlphaCo      1;
+maxDeltaT       1;
+
+wallShearStress1
+{
+    // Mandatory entries (unmodifiable)
+    type        wallShearStress;
+    libs        (fieldFunctionObjects);
+
+    // Optional entries (runtime modifiable)
+    patches     ("concretewall" 
+		); // ("steelwall_us" "steelwall_ds");
+
+    // Optional (inherited) entries
+}
+
+// ************************************************************************* //
